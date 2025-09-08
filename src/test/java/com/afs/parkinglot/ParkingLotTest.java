@@ -22,9 +22,11 @@ public class ParkingLotTest {
         ParkingLot parkingLot = new ParkingLot(0);
         Car car = new Car();
         // when
-        Ticket ticket = parkingLot.park(car);
+        ParkingException exception = assertThrows(ParkingException.class, () -> {
+            parkingLot.park(car);
+        });
         // then
-        assertNull(ticket);
+        assertEquals("No available position.", exception.getMessage());
     }
 
     @Test
