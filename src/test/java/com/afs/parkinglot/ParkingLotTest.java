@@ -2,9 +2,6 @@ package com.afs.parkinglot;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.PriorityQueue;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,7 +19,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void should_return_null_given_a_full_parking_lot_and_a_car_when_parking_car() {
+    public void should_throw_exception_given_a_full_parking_lot_and_a_car_when_parking_car() {
         // given
         ParkingLot parkingLot = new ParkingLot(0);
         Car car = new Car();
@@ -61,7 +58,7 @@ public class ParkingLotTest {
         assertEquals(parkingCar2, fetchCar2);
     }
     @Test
-    public void should_return_null_given_a_parking_lot_and_a_wrong_ticket_when_fetch_car() {
+    public void should_throw_exception_given_a_parking_lot_and_a_wrong_ticket_when_fetch_car() {
         // given
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
@@ -75,7 +72,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void should_return_null_given_a_parking_lot_and_an_used_ticket_when_fetch_car() {
+    public void should_throw_exception_given_a_parking_lot_and_an_used_ticket_when_fetch_car() {
         // given
         ParkingLot parkingLot = new ParkingLot(10);
         Ticket ticket = parkingLot.park(new Car());
@@ -101,7 +98,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void should_return_null_given_a_full_parking_lot_and_a_car_and_a_standard_boy_when_parking_car() {
+    public void should_throw_exception_given_a_full_parking_lot_and_a_car_and_a_standard_boy_when_parking_car() {
         // given
         ParkingLot parkingLot = new ParkingLot(0);
         Car car = new Car();
@@ -144,7 +141,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void should_return_null_given_a_parking_lot_and_a_wrong_ticket_and_a_standard_boy_when_fetch_car() {
+    public void should_throw_exception_given_a_parking_lot_and_a_wrong_ticket_and_a_standard_boy_when_fetch_car() {
         // given
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
@@ -159,7 +156,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void should_return_null_given_a_parking_lot_and_an_used_ticket_and_a_standard_boy_when_fetch_car() {
+    public void should_throw_exception_given_a_parking_lot_and_an_used_ticket_and_a_standard_boy_when_fetch_car() {
         // given
         ParkingLot parkingLot = new ParkingLot(10);
         Ticket ticket = parkingLot.park(new Car());

@@ -3,7 +3,7 @@ package com.afs.parkinglot;
 public class Ticket {
     private boolean isUsed = false;
 
-    private ParkingLot parkingLot;
+    private final ParkingLot parkingLot;
 
     public Ticket(ParkingLot parkingLot) {
         this.parkingLot = parkingLot;
