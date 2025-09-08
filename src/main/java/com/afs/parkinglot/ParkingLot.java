@@ -3,7 +3,7 @@ package com.afs.parkinglot;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ParkingLot {
+public class ParkingLot implements Comparable<ParkingLot>{
     private int capacity;
     private final Map<Ticket, Car> ticketCarMap = new HashMap<>();
     public ParkingLot(int capacity) {
@@ -15,7 +15,7 @@ public class ParkingLot {
             throw new ParkingException("No available position.");
         }
         capacity--;
-        Ticket ticket = new Ticket();
+        Ticket ticket = new Ticket(this);
         ticketCarMap.put(ticket, car);
         return ticket;
 
@@ -31,5 +31,14 @@ public class ParkingLot {
     }
     private boolean isValidTicket(Ticket ticket) {
         return !ticket.isUsed() && ticketCarMap.get(ticket) != null;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    @Override
+    public int compareTo(ParkingLot o) {
+        return getCapacity() - o.getCapacity();
     }
 }

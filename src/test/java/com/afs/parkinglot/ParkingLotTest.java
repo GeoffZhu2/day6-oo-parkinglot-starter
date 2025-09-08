@@ -2,6 +2,11 @@ package com.afs.parkinglot;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.PriorityQueue;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingLotTest {
@@ -58,11 +63,12 @@ public class ParkingLotTest {
     @Test
     public void should_return_null_given_a_parking_lot_and_a_wrong_ticket_when_fetch_car() {
         // given
-        ParkingLot parkingLot = new ParkingLot(10);
-        Ticket ticket = new Ticket();
+        ParkingLot parkingLot1 = new ParkingLot(10);
+        ParkingLot parkingLot2 = new ParkingLot(10);
+        Ticket ticket = new Ticket(parkingLot2);
         // when
         ParkingException exception = assertThrows(ParkingException.class, () -> {
-            parkingLot.fetch(ticket);
+            parkingLot1.fetch(ticket);
         });
         // then
         assertEquals("Unrecognized parking ticket.", exception.getMessage());
@@ -140,9 +146,10 @@ public class ParkingLotTest {
     @Test
     public void should_return_null_given_a_parking_lot_and_a_wrong_ticket_and_a_standard_boy_when_fetch_car() {
         // given
-        ParkingLot parkingLot = new ParkingLot(10);
-        Ticket ticket = new Ticket();
-        StandardBoy standardBoy = new StandardBoy(parkingLot);
+        ParkingLot parkingLot1 = new ParkingLot(10);
+        ParkingLot parkingLot2 = new ParkingLot(10);
+        Ticket ticket = new Ticket(parkingLot2);
+        StandardBoy standardBoy = new StandardBoy(parkingLot1);
         // when
         ParkingException exception = assertThrows(ParkingException.class, () -> {
             standardBoy.fetch(ticket);
@@ -164,5 +171,24 @@ public class ParkingLotTest {
         });
         // then
         assertEquals("Unrecognized parking ticket.", exception.getMessage());
+    }
+
+    @Test
+    public void should_park_in_available_lot_given_2_full_parking_lots_and_the_last_is_available_when_other_lots_are_full() {
+        // given
+        ParkingLot parkingLot1 = new ParkingLot(0);
+        ParkingLot parkingLot2 = new ParkingLot(0);
+        ParkingLot parkingLot3 = new ParkingLot(10);
+        Car car = new Car();
+        PriorityQueue<ParkingLot> parkingLots = new PriorityQueue<>();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        parkingLots.add(parkingLot3);
+        StandardBoy standardBoy = new StandardBoy(parkingLots);
+        // when
+        Ticket ticket = standardBoy.park(car);
+        // then
+        assertNotNull(ticket);
+        assertEquals(parkingLot3, ticket.getParkingLot());
     }
 }
