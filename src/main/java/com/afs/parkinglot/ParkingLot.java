@@ -27,6 +27,6 @@ public class ParkingLot {
         return null;
     }
     private boolean isValidTicket(Ticket ticket) {
-        return !ticket.isUsed();
+        return !ticket.isUsed() && ticketCarMap.get(ticket) != null;
     }
 }
