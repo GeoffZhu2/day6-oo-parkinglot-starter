@@ -2,6 +2,8 @@ package com.afs.parkinglot;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.PriorityQueue;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -165,7 +167,7 @@ public class ParkingLotTest {
         ParkingLot parkingLot2 = new ParkingLot(0);
         ParkingLot parkingLot3 = new ParkingLot(10);
         Car car = new Car();
-        PriorityQueue<ParkingLot> parkingLots = new PriorityQueue<>();
+        List<ParkingLot> parkingLots = new LinkedList<>();
         parkingLots.add(parkingLot1);
         parkingLots.add(parkingLot2);
         parkingLots.add(parkingLot3);
@@ -184,7 +186,7 @@ public class ParkingLotTest {
         ParkingLot parkingLot2 = new ParkingLot(0);
         ParkingLot parkingLot3 = new ParkingLot(0);
         Car car = new Car();
-        PriorityQueue<ParkingLot> parkingLots = new PriorityQueue<>();
+        List<ParkingLot> parkingLots = new LinkedList<>();
         parkingLots.add(parkingLot1);
         parkingLots.add(parkingLot2);
         parkingLots.add(parkingLot3);
@@ -194,4 +196,23 @@ public class ParkingLotTest {
         // then
         assertEquals("No available position.", exception.getMessage());
     }
+
+//    @Test
+//    public void should_park_in_most_available_position_lot_given_3_parking_lots_when_parking_car() {
+//        // given
+//        ParkingLot parkingLot1 = new ParkingLot(1);
+//        ParkingLot parkingLot2 = new ParkingLot(10);
+//        ParkingLot parkingLot3 = new ParkingLot(5);
+//        Car car = new Car();
+//        List<ParkingLot> parkingLots = new LinkedList<>();
+//        parkingLots.add(parkingLot1);
+//        parkingLots.add(parkingLot2);
+//        parkingLots.add(parkingLot3);
+//        SmartBoy smartBoy = new SmartBoy(parkingLots);
+//        // when
+//        Ticket ticket = smartBoy.park(car);
+//        // then
+//        assertNotNull(ticket);
+//        assertEquals(parkingLot2, ticket.getParkingLot());
+//    }
 }
