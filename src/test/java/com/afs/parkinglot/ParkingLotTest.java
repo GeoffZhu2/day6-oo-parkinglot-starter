@@ -214,4 +214,26 @@ public class ParkingLotTest {
         assertNotNull(ticket);
         assertEquals(parkingLot2, ticket.getParkingLot());
     }
+
+    @Test
+    public void should_park_in_lot_with_highest_vacancy_rate_given_3_parking_lots_when_parking_car() {
+        // given
+        ParkingLot parkingLot1 = new ParkingLot(3);
+        parkingLot1.park(new Car());
+        parkingLot1.park(new Car());
+        ParkingLot parkingLot2 = new ParkingLot(2);
+        parkingLot2.park(new Car());
+        ParkingLot parkingLot3 = new ParkingLot(1);
+        Car car = new Car();
+        List<ParkingLot> parkingLots = new LinkedList<>();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        parkingLots.add(parkingLot3);
+        SuperBoy superBoy = new SuperBoy(parkingLots);
+        // when
+        Ticket ticket = superBoy.park(car);
+        // then
+        assertNotNull(ticket);
+        assertEquals(parkingLot3, ticket.getParkingLot());
+    }
 }
