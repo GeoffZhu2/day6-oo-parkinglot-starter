@@ -22,11 +22,12 @@ public class ParkingLot {
     }
 
     public Car fetch(Ticket ticket) {
-        if(isValidTicket(ticket)) {
-            ticket.setUsed();
-            return ticketCarMap.get(ticket);
+        if(!isValidTicket(ticket)) {
+            throw new ParkingException("Unrecognized parking ticket.");
         }
-        return null;
+        ticket.setUsed();
+        return ticketCarMap.get(ticket);
+
     }
     private boolean isValidTicket(Ticket ticket) {
         return !ticket.isUsed() && ticketCarMap.get(ticket) != null;
