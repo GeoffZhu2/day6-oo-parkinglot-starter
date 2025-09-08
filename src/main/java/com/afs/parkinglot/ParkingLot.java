@@ -22,6 +22,7 @@ public class ParkingLot {
 
     public Car fetch(Ticket ticket) {
         if(isValidTicket(ticket)) {
+            ticket.setUsed();
             return ticketCarMap.get(ticket);
         }
         return null;
