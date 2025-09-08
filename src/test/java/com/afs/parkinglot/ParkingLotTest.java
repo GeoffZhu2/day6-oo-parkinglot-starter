@@ -137,4 +137,17 @@ public class ParkingLotTest {
         assertEquals(parkingCar2, fetchCar2);
     }
 
+    @Test
+    public void should_return_null_given_a_parking_lot_and_a_wrong_ticket_and_a_standard_boy_when_fetch_car() {
+        // given
+        ParkingLot parkingLot = new ParkingLot(10);
+        Ticket ticket = new Ticket();
+        StandardBoy standardBoy = new StandardBoy(parkingLot);
+        // when
+        ParkingException exception = assertThrows(ParkingException.class, () -> {
+            standardBoy.fetch(ticket);
+        });
+        // then
+        assertEquals("Unrecognized parking ticket.", exception.getMessage());
+    }
 }
