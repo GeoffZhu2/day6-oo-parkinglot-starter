@@ -94,4 +94,18 @@ public class ParkingLotTest {
         assertNotNull(ticket);
     }
 
+    @Test
+    public void should_return_null_given_a_full_parking_lot_and_a_car_and_a_standard_boy_when_parking_car() {
+        // given
+        ParkingLot parkingLot = new ParkingLot(0);
+        Car car = new Car();
+        StandardBoy standardBoy = new StandardBoy(parkingLot);
+        // when
+        ParkingException exception = assertThrows(ParkingException.class, () -> {
+            standardBoy.park(car);
+        });
+        // then
+        assertEquals("No available position.", exception.getMessage());
+    }
+
 }
