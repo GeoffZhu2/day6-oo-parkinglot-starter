@@ -3,14 +3,14 @@ package com.afs.parkinglot;
 import java.util.LinkedList;
 import java.util.List;
 
-public class StandardBoy {
+public class StandardParkingBoy {
     protected List<ParkingLot> parkingLots = new LinkedList<>();
 
-    public StandardBoy(ParkingLot parkingLot) {
+    public StandardParkingBoy(ParkingLot parkingLot) {
         this.parkingLots.add(parkingLot);
     }
 
-    public StandardBoy(List<ParkingLot> parkingLots) {
+    public StandardParkingBoy(List<ParkingLot> parkingLots) {
         this.parkingLots.addAll(parkingLots);
     }
 

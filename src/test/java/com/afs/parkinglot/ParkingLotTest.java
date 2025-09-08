@@ -85,9 +85,9 @@ public class ParkingLotTest {
         // given
         ParkingLot parkingLot = new ParkingLot(10);
         Car car = new Car();
-        StandardBoy standardBoy = new StandardBoy(parkingLot);
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLot);
         // when
-        Ticket ticket = standardBoy.park(car);
+        Ticket ticket = standardParkingBoy.park(car);
         // then
         assertNotNull(ticket);
     }
@@ -97,9 +97,9 @@ public class ParkingLotTest {
         // given
         ParkingLot parkingLot = new ParkingLot(0);
         Car car = new Car();
-        StandardBoy standardBoy = new StandardBoy(parkingLot);
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLot);
         // when
-        ParkingException exception = assertThrows(ParkingException.class, () -> standardBoy.park(car));
+        ParkingException exception = assertThrows(ParkingException.class, () -> standardParkingBoy.park(car));
         // then
         assertEquals("No available position.", exception.getMessage());
     }
@@ -109,9 +109,9 @@ public class ParkingLotTest {
         // given
         ParkingLot parkingLot = new ParkingLot(10);
         Ticket ticket = parkingLot.park(new Car());
-        StandardBoy standardBoy = new StandardBoy(parkingLot);
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLot);
         // when
-        Car car = standardBoy.fetch(ticket);
+        Car car = standardParkingBoy.fetch(ticket);
         // then
         assertNotNull(car);
     }
@@ -124,10 +124,10 @@ public class ParkingLotTest {
         Car parkingCar2 = new Car();
         Ticket ticket1 = parkingLot.park(parkingCar1);
         Ticket ticket2 = parkingLot.park(parkingCar2);
-        StandardBoy standardBoy = new StandardBoy(parkingLot);
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLot);
         // when
-        Car fetchCar1 = standardBoy.fetch(ticket1);
-        Car fetchCar2 = standardBoy.fetch(ticket2);
+        Car fetchCar1 = standardParkingBoy.fetch(ticket1);
+        Car fetchCar2 = standardParkingBoy.fetch(ticket2);
         // then
         assertEquals(parkingCar1, fetchCar1);
         assertEquals(parkingCar2, fetchCar2);
@@ -139,9 +139,9 @@ public class ParkingLotTest {
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(10);
         Ticket ticket = new Ticket(parkingLot2);
-        StandardBoy standardBoy = new StandardBoy(parkingLot1);
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLot1);
         // when
-        ParkingException exception = assertThrows(ParkingException.class, () -> standardBoy.fetch(ticket));
+        ParkingException exception = assertThrows(ParkingException.class, () -> standardParkingBoy.fetch(ticket));
         // then
         assertEquals("Unrecognized parking ticket.", exception.getMessage());
     }
@@ -151,10 +151,10 @@ public class ParkingLotTest {
         // given
         ParkingLot parkingLot = new ParkingLot(10);
         Ticket ticket = parkingLot.park(new Car());
-        StandardBoy standardBoy = new StandardBoy(parkingLot);
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLot);
         parkingLot.fetch(ticket);
         // when
-        ParkingException exception = assertThrows(ParkingException.class, () -> standardBoy.fetch(ticket));
+        ParkingException exception = assertThrows(ParkingException.class, () -> standardParkingBoy.fetch(ticket));
         // then
         assertEquals("Unrecognized parking ticket.", exception.getMessage());
     }
@@ -170,9 +170,9 @@ public class ParkingLotTest {
         parkingLots.add(parkingLot1);
         parkingLots.add(parkingLot2);
         parkingLots.add(parkingLot3);
-        StandardBoy standardBoy = new StandardBoy(parkingLots);
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
         // when
-        Ticket ticket = standardBoy.park(car);
+        Ticket ticket = standardParkingBoy.park(car);
         // then
         assertNotNull(ticket);
         assertEquals(parkingLot3, ticket.getParkingLot());
@@ -189,9 +189,9 @@ public class ParkingLotTest {
         parkingLots.add(parkingLot1);
         parkingLots.add(parkingLot2);
         parkingLots.add(parkingLot3);
-        StandardBoy standardBoy = new StandardBoy(parkingLots);
+        StandardParkingBoy standardParkingBoy = new StandardParkingBoy(parkingLots);
         // when
-        ParkingException exception = assertThrows(ParkingException.class, () -> standardBoy.park(car));
+        ParkingException exception = assertThrows(ParkingException.class, () -> standardParkingBoy.park(car));
         // then
         assertEquals("No available position.", exception.getMessage());
     }
@@ -207,7 +207,7 @@ public class ParkingLotTest {
         parkingLots.add(parkingLot1);
         parkingLots.add(parkingLot2);
         parkingLots.add(parkingLot3);
-        SmartBoy smartBoy = new SmartBoy(parkingLots);
+        SmartParkingBoy smartBoy = new SmartParkingBoy(parkingLots);
         // when
         Ticket ticket = smartBoy.park(car);
         // then
@@ -229,7 +229,7 @@ public class ParkingLotTest {
         parkingLots.add(parkingLot1);
         parkingLots.add(parkingLot2);
         parkingLots.add(parkingLot3);
-        SuperBoy superBoy = new SuperBoy(parkingLots);
+        SuperParkingBoy superBoy = new SuperParkingBoy(parkingLots);
         // when
         Ticket ticket = superBoy.park(car);
         // then

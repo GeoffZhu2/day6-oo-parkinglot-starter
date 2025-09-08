@@ -2,9 +2,9 @@ package com.afs.parkinglot;
 
 import java.util.List;
 
-public class SuperBoy extends StandardBoy{
+public class SuperParkingBoy extends StandardParkingBoy {
 
-    public SuperBoy(List<ParkingLot> parkingLots) {
+    public SuperParkingBoy(List<ParkingLot> parkingLots) {
         super(parkingLots);
         this.parkingLots.sort((p1, p2) ->
                 Double.compare(
