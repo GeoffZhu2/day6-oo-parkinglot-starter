@@ -4,17 +4,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ParkingLot implements Comparable<ParkingLot>{
-    private int capacity;
+    private final int capacity;
+    private int availablePosition;
     private final Map<Ticket, Car> ticketCarMap = new HashMap<>();
     public ParkingLot(int capacity) {
-
         this.capacity = capacity;
+        this.availablePosition = capacity;
     }
     public Ticket park(Car car) {
-        if(capacity <= 0) {
+        if(availablePosition <= 0) {
             throw new ParkingException("No available position.");
         }
-        capacity--;
+        availablePosition--;
         Ticket ticket = new Ticket(this);
         ticketCarMap.put(ticket, car);
         return ticket;
@@ -33,12 +34,16 @@ public class ParkingLot implements Comparable<ParkingLot>{
         return !ticket.isUsed() && ticketCarMap.get(ticket) != null;
     }
 
+    public int getAvailablePosition() {
+        return availablePosition;
+    }
+
     public int getCapacity() {
         return capacity;
     }
 
     @Override
     public int compareTo(ParkingLot o) {
-        return getCapacity() - o.getCapacity();
+        return getAvailablePosition() - o.getAvailablePosition();
     }
 }

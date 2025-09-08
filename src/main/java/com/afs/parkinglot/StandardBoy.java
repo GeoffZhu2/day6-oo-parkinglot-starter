@@ -15,7 +15,7 @@ public class StandardBoy {
 
     public Ticket park(Car car) {
         for (ParkingLot parkingLot : parkingLots) {
-            if (parkingLot.getCapacity() > 0) {
+            if (parkingLot.getAvailablePosition() > 0) {
                 return parkingLot.park(car);
             }
         }
