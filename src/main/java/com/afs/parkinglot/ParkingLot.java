@@ -19,4 +19,14 @@ public class ParkingLot {
         }
         return null;
     }
+
+    public Car fetch(Ticket ticket) {
+        if(isValidTicket(ticket)) {
+            return ticketCarMap.get(ticket);
+        }
+        return null;
+    }
+    private boolean isValidTicket(Ticket ticket) {
+        return !ticket.isUsed();
+    }
 }
