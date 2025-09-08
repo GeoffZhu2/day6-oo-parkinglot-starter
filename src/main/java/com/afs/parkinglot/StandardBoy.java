@@ -2,10 +2,9 @@ package com.afs.parkinglot;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.PriorityQueue;
 
 public class StandardBoy {
-    List<ParkingLot> parkingLots = new LinkedList<>();
+    protected List<ParkingLot> parkingLots = new LinkedList<>();
 
     public StandardBoy(ParkingLot parkingLot) {
         this.parkingLots.add(parkingLot);
