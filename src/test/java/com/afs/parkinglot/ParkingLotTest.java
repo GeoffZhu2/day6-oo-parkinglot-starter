@@ -191,4 +191,24 @@ public class ParkingLotTest {
         assertNotNull(ticket);
         assertEquals(parkingLot3, ticket.getParkingLot());
     }
+
+    @Test
+    public void should_throw_exception_given_3_full_parking_lots_when_other_lots_are_full() {
+        // given
+        ParkingLot parkingLot1 = new ParkingLot(0);
+        ParkingLot parkingLot2 = new ParkingLot(0);
+        ParkingLot parkingLot3 = new ParkingLot(0);
+        Car car = new Car();
+        PriorityQueue<ParkingLot> parkingLots = new PriorityQueue<>();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        parkingLots.add(parkingLot3);
+        StandardBoy standardBoy = new StandardBoy(parkingLots);
+        // when
+        ParkingException exception = assertThrows(ParkingException.class, () -> {
+            standardBoy.park(car);
+        });
+        // then
+        assertEquals("No available position.", exception.getMessage());
+    }
 }
